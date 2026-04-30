@@ -17,6 +17,11 @@ import { isNounderNoun } from '@/utils/nounderNoun';
 import { Auction as IAuction } from '@/wrappers/nounsAuction';
 import { INounSeed } from '@/wrappers/nounToken';
 
+import { useChainId } from 'wagmi';
+
+import { SealedBidCard } from '@/components/sealed-bid/SealedBidCard';
+import { getInterfoldConfig } from '@/utils/interfold/interfold-config';
+
 import classes from './Auction.module.css';
 
 interface AuctionProps {
@@ -25,6 +30,10 @@ interface AuctionProps {
 
 const Auction: React.FC<AuctionProps> = props => {
   const { auction: currentAuction } = props;
+
+  const chainId = useChainId();
+  const interfoldConfig = getInterfoldConfig(chainId);
+  const isVickreyAvailable = interfoldConfig.v4AuctionAddress !== undefined && chainId === 31337; // local hardhat
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -96,6 +105,15 @@ const Auction: React.FC<AuctionProps> = props => {
               (isNounderNoun(BigInt(currentAuction.nounId))
                 ? nounderNounContent
                 : currentAuctionActivityContent)}
+            {isVickreyAvailable && currentAuction !== undefined && (
+              <SealedBidCard
+                nounId={BigInt(currentAuction.nounId)}
+                auctionAddress={interfoldConfig.v4AuctionAddress!}
+                maxPriceWei={BigInt(100e18)}
+                endTime={BigInt(currentAuction.endTime || 0)}
+                imageUrl={undefined}
+              />
+            )}
           </Col>
         </Row>
       </Container>
