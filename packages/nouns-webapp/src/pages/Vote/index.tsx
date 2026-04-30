@@ -20,9 +20,10 @@ import ReactTooltip from 'react-tooltip';
 import { isNonNullish } from 'remeda';
 import { toast } from 'sonner';
 import { zeroAddress } from 'viem';
-import { useAccount, useBlockNumber } from 'wagmi';
+import { useAccount, useBlockNumber, useChainId } from 'wagmi';
 
 import DynamicQuorumInfoModal from '@/components/DynamicQuorumInfoModal';
+import { E3VoteCard } from '@/components/e3-vote/E3VoteCard';
 import ProposalContent from '@/components/ProposalContent';
 import ProposalHeader from '@/components/ProposalHeader';
 import ShortAddress from '@/components/ShortAddress';
@@ -38,6 +39,7 @@ import Section from '@/layout/Section';
 import { cn } from '@/lib/utils';
 import { AVERAGE_BLOCK_TIME_IN_SECS } from '@/utils/constants';
 import { getNounVotes } from '@/utils/getNounsVotes';
+import { getInterfoldConfig } from '@/utils/interfold/interfold-config';
 import { isProposalUpdatable } from '@/utils/proposals';
 import { parseStreamCreationCallData } from '@/utils/streamingPaymentUtils/streamingPaymentUtils';
 import {
@@ -117,6 +119,9 @@ const VotePage = () => {
   const activeLocale = useActiveLocale();
   const { _ } = useLingui();
   const { address: account } = useAccount();
+  const chainId = useChainId();
+  const interfoldConfig = getInterfoldConfig(chainId);
+  const isE3Available = interfoldConfig.sidecarAddress !== undefined && chainId === 31337; // local hardhat
   const { query, variables } = propUsingDynamicQuorum(id ?? '0');
   const { data: dqInfo, loading: loadingDQInfo, error: dqError } = useQuery(query, { variables });
   const { queueProposal, queueProposalState } = useQueueProposal();
@@ -690,6 +695,17 @@ const VotePage = () => {
                 delegateGroupedVoteData={data}
               />
             </Row>
+            {isE3Available && proposal !== undefined && (
+              <Row>
+                <Col lg={12}>
+                  <E3VoteCard
+                    proposalId={BigInt(proposal.id ?? 0)}
+                    sidecarAddress={interfoldConfig.sidecarAddress!}
+                    isActive={proposal.status === ProposalState.ACTIVE}
+                  />
+                </Col>
+              </Row>
+            )}
           </>
         )}
 
