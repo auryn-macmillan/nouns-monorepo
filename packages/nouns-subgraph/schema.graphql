@@ -760,3 +760,113 @@ type ForkJoinedNoun @entity(immutable: true) {
 
   forkJoin: ForkJoin!
 }
+
+type E3Proposal @entity(immutable: false) {
+  "The proposal ID"
+  id: ID!
+
+  "The E3 computation ID"
+  e3Id: Bytes!
+
+  "The Merkle root for voter eligibility"
+  merkleRoot: Bytes!
+
+  "Current voting phase: AcceptingInputs, Computing, Decrypted, Defeated"
+  votingPhase: String!
+
+  "For votes from decrypted tally"
+  forVotes: BigInt!
+
+  "Against votes from decrypted tally"
+  againstVotes: BigInt!
+
+  "Abstain votes from decrypted tally"
+  abstainVotes: BigInt!
+
+  "Number of encrypted votes submitted"
+  encryptedVoteCount: BigInt!
+
+  "Relation to the existing Proposal entity"
+  proposal: Proposal!
+
+  "Tally result, set after decryption"
+  tallyResult: E3TallyResult
+}
+
+type E3VoteSubmission @entity(immutable: true) {
+  "Transaction hash + log index"
+  id: ID!
+
+  "The E3 proposal this vote belongs to"
+  proposal: E3Proposal!
+
+  "The voter address"
+  voter: Bytes!
+
+  "Block number of the vote"
+  blockNumber: BigInt!
+
+  "Timestamp of the block the vote is in"
+  blockTimestamp: BigInt!
+}
+
+type E3TallyResult @entity(immutable: false) {
+  "The proposal ID"
+  id: ID!
+
+  "The E3 proposal this tally belongs to"
+  proposal: E3Proposal!
+
+  "For votes"
+  forVotes: BigInt!
+
+  "Against votes"
+  againstVotes: BigInt!
+
+  "Abstain votes"
+  abstainVotes: BigInt!
+
+  "Whether quorum was reached"
+  quorumReached: Boolean!
+
+  "Whether the proposal succeeded"
+  succeeded: Boolean!
+
+  "Timestamp when tally was decrypted"
+  decryptedAt: BigInt!
+}
+
+type VickreyAuction @entity(immutable: false) {
+  id: ID!
+  e3Id: Bytes!
+  merkleRoot: Bytes!
+  phase: String!
+  bidCount: BigInt!
+  secondPriceBucket: BigInt!
+  secondPrice: BigInt!
+  winner: Bytes!
+  zeroBids: Boolean!
+  startTime: BigInt!
+  endTime: BigInt!
+  settled: Boolean!
+  sealedBids: [SealedBid!]! @derivedFrom(field: "auction")
+  auctionResult: VickreyAuctionResult
+}
+
+type SealedBid @entity(immutable: true) {
+  id: ID!
+  auction: VickreyAuction!
+  bidder: Bytes!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+}
+
+type VickreyAuctionResult @entity(immutable: false) {
+  id: ID!
+  auction: VickreyAuction!
+  secondPriceBucket: BigInt!
+  winner: Bytes!
+  zeroBids: Boolean!
+  secondPrice: BigInt!
+  decodedAt: BigInt!
+}

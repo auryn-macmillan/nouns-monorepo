@@ -15,5 +15,13 @@
   "nounsDAOData": {
     "address": "0x59b670e9fA9D0A427751Af201D676719a970857b",
     "startBlock": 11099744
+  },
+  "crispVotingSidecar": {
+    "address": "0x0000000000000000000000000000000000000000",
+    "startBlock": 0
+  },
+  "nounsAuctionHouseV4": {
+    "address": "0x0000000000000000000000000000000000000000",
+    "startBlock": 0
   }
 }

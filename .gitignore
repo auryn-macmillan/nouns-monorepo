@@ -11,6 +11,9 @@ dist
 *.log
 .claude
 
+packages/nouns-contracts/addresses.local.json
+packages/nouns-webapp/src/contracts/addresses.local.json
+
 # Local Netlify folder
 .netlify
 

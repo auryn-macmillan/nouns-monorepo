@@ -216,3 +216,60 @@ dataSources:
           handler: handleFeedbackSent
         - event: CandidateFeedbackSent(indexed address,indexed address,string,uint8,string)
           handler: handleCandidateFeedbackSent
+  - kind: ethereum/contract
+    name: CrispVotingSidecar
+    network: {{network}}
+    source:
+      address: '{{crispVotingSidecar.address}}'
+      abi: CrispVotingSidecar
+      startBlock: {{crispVotingSidecar.startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mapping-e3.ts
+      entities:
+        - E3Proposal
+        - E3VoteSubmission
+        - E3TallyResult
+        - Proposal
+      abis:
+        - name: CrispVotingSidecar
+          file: ../nouns-contracts/abi/contracts/governance/CrispVotingSidecar.sol/CrispVotingSidecar.json
+      eventHandlers:
+        - event: E3VoteInitialized(indexed uint256,indexed bytes32,bytes32)
+          handler: handleE3VoteInitialized
+        - event: E3VoteCast(indexed uint256,indexed address)
+          handler: handleE3VoteCast
+        - event: E3TallyDecrypted(indexed uint256,uint96,uint96,uint96)
+          handler: handleE3TallyDecrypted
+        - event: E3VoteDecayed(indexed uint256)
+          handler: handleE3VoteDecayed
+  - kind: ethereum/contract
+    name: NounsAuctionHouseV4
+    network: {{network}}
+    source:
+      address: '{{nounsAuctionHouseV4.address}}'
+      abi: NounsAuctionHouseV4
+      startBlock: {{nounsAuctionHouseV4.startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      file: ./src/mapping-vickrey.ts
+      entities:
+        - VickreyAuction
+        - SealedBid
+        - VickreyAuctionResult
+      abis:
+        - name: NounsAuctionHouseV4
+          file: ../nouns-contracts/abi/contracts/NounsAuctionHouseV4.sol/NounsAuctionHouseV4.json
+      eventHandlers:
+        - event: AuctionCreated(indexed uint256,uint256,uint256)
+          handler: handleAuctionCreated
+        - event: SealedBidSubmitted(indexed uint256,indexed address)
+          handler: handleSealedBidSubmitted
+        - event: AuctionResultDecoded(indexed uint256,uint256,address,bool)
+          handler: handleAuctionResultDecoded
+        - event: AuctionSettled(indexed uint256,address,uint256)
+          handler: handleAuctionSettled
