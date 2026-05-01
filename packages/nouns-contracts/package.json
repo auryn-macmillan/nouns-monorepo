@@ -31,6 +31,7 @@
     "task:mint-noun": "hardhat mint-noun",
     "task:populate-descriptor": "hardhat populate-descriptor",
     "task:run-local": "hardhat run-local-dao-v3",
+    "task:run-local-dao-v3-with-interfold": "hardhat run-local-dao-v3-with-interfold",
     "test": "hardhat test"
   },
   "dependencies": {
