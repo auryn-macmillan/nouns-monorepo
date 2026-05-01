@@ -1,0 +1,9 @@
+merkle_root = "0x2e0"
+proposal_id = "0x2a"
+commitment = "0x205"
+voter_address = "0x7b"
+voting_power = "5"
+merkle_path = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
+merkle_indices = ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
+vote_choice = "1"
+nonce = "0x3e7"

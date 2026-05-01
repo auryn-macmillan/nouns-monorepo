@@ -1,0 +1,5 @@
+[package]
+name = "nouns_vickrey_program"
+type = "program"
+authors = [""]
+compiler_version = ">=0.22.0"

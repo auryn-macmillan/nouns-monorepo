@@ -71,6 +71,9 @@ interface NounsDAOEventsV3 {
     /// @param reason The reason given for the vote by the voter
     event VoteCast(address indexed voter, uint256 proposalId, uint8 support, uint256 votes, string reason);
 
+    /// @notice Emitted when encrypted vote tallies are written for a proposal
+    event E3TallySet(uint256 indexed proposalId, uint96 forVotes, uint96 againstVotes, uint96 abstainVotes);
+
     /// @notice An event emitted when a proposal has been canceled
     event ProposalCanceled(uint256 id);
 
@@ -407,6 +410,9 @@ interface NounsDAOTypes {
         /// @dev Make sure this stays the last variable in this struct, so we can delete it in the next version
         /// @dev To be zeroed-out in the upcoming DAO upgrade.
         uint256 voteSnapshotBlockSwitchProposalId;
+        // ================ V5 ================ //
+        /// @notice Address of the CrispVotingSidecar contract for E3 voting
+        address crispVotingSidecar;
     }
 
     struct Proposal {
@@ -485,6 +491,8 @@ interface NounsDAOTypes {
         uint8 support;
         /// @notice The number of votes the voter had, which were cast
         uint96 votes;
+        /// @notice Whether this vote was cast via E3 (encrypted) voting
+        bool isE3Vote;
     }
 
     struct ProposerSignature {
