@@ -13,25 +13,33 @@ const activeChain =
     find(chain => chain.id === activeChainId),
   ) ?? sepolia;
 
-const transports = {
-  [mainnet.id]: fallback([
-    ...(import.meta.env.VITE_MAINNET_WSRPC !== undefined
-      ? [webSocket(import.meta.env.VITE_MAINNET_WSRPC)]
-      : []),
-    ...(import.meta.env.VITE_MAINNET_JSONRPC !== undefined
-      ? [http(import.meta.env.VITE_MAINNET_JSONRPC)]
-      : []),
-  ]),
-  [sepolia.id]: fallback([
+const buildTransport = () => {
+  if (activeChain.id === hardhat.id) {
+    return fallback([http('http://localhost:8545')]);
+  }
+  if (activeChain.id === mainnet.id) {
+    return fallback([
+      ...(import.meta.env.VITE_MAINNET_WSRPC !== undefined
+        ? [webSocket(import.meta.env.VITE_MAINNET_WSRPC)]
+        : []),
+      ...(import.meta.env.VITE_MAINNET_JSONRPC !== undefined
+        ? [http(import.meta.env.VITE_MAINNET_JSONRPC)]
+        : []),
+    ]);
+  }
+  return fallback([
     ...(import.meta.env.VITE_SEPOLIA_WSRPC !== undefined
       ? [webSocket(import.meta.env.VITE_SEPOLIA_WSRPC)]
       : []),
     ...(import.meta.env.VITE_SEPOLIA_JSONRPC !== undefined
       ? [http(import.meta.env.VITE_SEPOLIA_JSONRPC)]
       : []),
-  ]),
-  [hardhat.id]: fallback([http('http://localhost:8545')]),
+  ]);
 };
+
+const transports = {
+  [activeChain.id]: buildTransport(),
+} as Record<number, ReturnType<typeof buildTransport>>;
 
 export const config = createConfig({
   chains: [activeChain],

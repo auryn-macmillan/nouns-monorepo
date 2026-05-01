@@ -4,6 +4,7 @@ import { blo } from 'blo';
 import { useEnsName } from 'wagmi';
 
 import ShortAddress from '@/components/ShortAddress';
+import { CHAIN_ID } from '@/config';
 import { Address } from '@/utils/types';
 
 type VoteSignalProps = {
@@ -14,7 +15,7 @@ type VoteSignalProps = {
 };
 
 const VoteSignal: React.FC<VoteSignalProps> = ({ address, reason, voteCount }) => {
-  const { data: ensName } = useEnsName({ address });
+  const { data: ensName } = useEnsName({ address, chainId: CHAIN_ID });
 
   return (
     <div>

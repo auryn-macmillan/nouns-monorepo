@@ -9,6 +9,7 @@ import { useAccount, useEnsAddress } from 'wagmi';
 import BrandSpinner from '@/components/BrandSpinner';
 import DelegationCandidateInfo from '@/components/DelegationCandidateInfo';
 import NavBarButton, { NavBarButtonStyle } from '@/components/NavBarButton';
+import { CHAIN_ID } from '@/config';
 import { useActiveLocale } from '@/hooks/useActivateLocale';
 import { buildEtherscanTxLink } from '@/utils/etherscan';
 import { usePickByState } from '@/utils/pickByState';
@@ -54,7 +55,6 @@ const getTitleFromState = (state: ChangeDelegateState) => {
   }
 };
 
-// eslint-disable-next-line sonarjs/cognitive-complexity
 const ChangeDelegatePanel: React.FC<ChangeDelegatePanelProps> = props => {
   const { onDismiss, delegateTo } = props;
 
@@ -93,6 +93,7 @@ const ChangeDelegatePanel: React.FC<ChangeDelegatePanelProps> = props => {
 
   const { data: resolvedAddress, isFetched } = useEnsAddress({
     name: delegateAddress,
+    chainId: CHAIN_ID,
     query: { enabled: Boolean(delegateAddress) },
   });
 
