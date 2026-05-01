@@ -260,6 +260,7 @@ export const ethToUsdPriceOracleAbi = [
  */
 export const ethToUsdPriceOracleAddress = {
   1: '0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419',
+  31337: '0x0000000000000000000000000000000000000000',
   11155111: '0x694AA1769357215DE4FAC081bf1f309aDC325306',
 } as const
 

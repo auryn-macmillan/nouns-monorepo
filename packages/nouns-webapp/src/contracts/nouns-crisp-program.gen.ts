@@ -187,7 +187,9 @@ export const nounsCrispProgramAbi = [
 ] as const
 
 export const nounsCrispProgramAddress = {
-  31337: '0xa82fF9aFd8f496c3d6ac40E2a0F282E47488CFc9',
+  1: '0x0000000000000000000000000000000000000000',
+  31337: '0x99bbA657f2BbC93c02D617f8bA121cB8Fc104Acf',
+  11155111: '0x0000000000000000000000000000000000000000',
 } as const
 
 export const nounsCrispProgramConfig = {

@@ -158,32 +158,56 @@ const interfoldContractConfigs = [
   {
     name: 'CrispVotingSidecar',
     fileName: 'crisp-voting-sidecar',
-    address: localAddresses.crispVotingSidecar as `0x${string}`,
+    address: {
+      [mainnet.id]: ZERO,
+      [sepolia.id]: ZERO,
+      [hardhat.id]: localAddresses.crispVotingSidecar as `0x${string}`,
+    },
   },
   {
     name: 'NounsAuctionHouseV4',
     fileName: 'nouns-auction-house-v4',
-    address: localAddresses.nounsAuctionHouseV4Proxy as `0x${string}`,
+    address: {
+      [mainnet.id]: ZERO,
+      [sepolia.id]: ZERO,
+      [hardhat.id]: localAddresses.nounsAuctionHouseV4Proxy as `0x${string}`,
+    },
   },
   {
     name: 'NounsCrispProgram',
     fileName: 'nouns-crisp-program',
-    address: localAddresses.nounsCrispProgram as `0x${string}`,
+    address: {
+      [mainnet.id]: ZERO,
+      [sepolia.id]: ZERO,
+      [hardhat.id]: localAddresses.nounsCrispProgram as `0x${string}`,
+    },
   },
   {
     name: 'NounsVickreyProgram',
     fileName: 'nouns-vickrey-program',
-    address: localAddresses.nounsVickreyProgram as `0x${string}`,
+    address: {
+      [mainnet.id]: ZERO,
+      [sepolia.id]: ZERO,
+      [hardhat.id]: localAddresses.nounsVickreyProgram as `0x${string}`,
+    },
   },
   {
     name: 'MockEnclave',
     fileName: 'mock-enclave',
-    address: localAddresses.mockEnclave as `0x${string}`,
+    address: {
+      [mainnet.id]: ZERO,
+      [sepolia.id]: ZERO,
+      [hardhat.id]: localAddresses.mockEnclave as `0x${string}`,
+    },
   },
   {
     name: 'MockEnclaveAdapter',
     fileName: 'mock-enclave-adapter',
-    address: localAddresses.mockEnclaveAdapter as `0x${string}`,
+    address: {
+      [mainnet.id]: ZERO,
+      [sepolia.id]: ZERO,
+      [hardhat.id]: localAddresses.mockEnclaveAdapter as `0x${string}`,
+    },
   },
 ];
 
@@ -213,7 +237,7 @@ export default defineConfig(() => [
         project: '../../nouns-contracts',
         include: [`${name}.json`],
         deployments: {
-          [name]: { [hardhat.id]: address },
+          [name]: address,
         },
       }),
       react(),

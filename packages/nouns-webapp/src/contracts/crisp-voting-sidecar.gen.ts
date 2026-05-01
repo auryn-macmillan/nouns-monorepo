@@ -495,7 +495,9 @@ export const crispVotingSidecarAbi = [
 ] as const
 
 export const crispVotingSidecarAddress = {
-  31337: '0x9E545E3C0baAB3E08CdfD552C960A1050f373042',
+  1: '0x0000000000000000000000000000000000000000',
+  31337: '0x4826533B4897376654Bb4d4AD88B7faFD0C98528',
+  11155111: '0x0000000000000000000000000000000000000000',
 } as const
 
 export const crispVotingSidecarConfig = {

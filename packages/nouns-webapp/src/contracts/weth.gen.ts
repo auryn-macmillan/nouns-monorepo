@@ -180,6 +180,7 @@ export const wethAbi = [
  */
 export const wethAddress = {
   1: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+  31337: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
   11155111: '0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14',
 } as const
 

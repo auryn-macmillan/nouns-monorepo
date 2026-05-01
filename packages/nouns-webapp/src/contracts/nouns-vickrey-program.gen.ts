@@ -247,7 +247,9 @@ export const nounsVickreyProgramAbi = [
 ] as const
 
 export const nounsVickreyProgramAddress = {
-  31337: '0x0000000000000000000000000000000000000000',
+  1: '0x0000000000000000000000000000000000000000',
+  31337: '0x8f86403A4DE0BB5791fa46B8e795C547942fE4Cf',
+  11155111: '0x0000000000000000000000000000000000000000',
 } as const
 
 export const nounsVickreyProgramConfig = {

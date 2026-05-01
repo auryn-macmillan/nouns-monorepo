@@ -449,6 +449,7 @@ export const mEthAbi = [
  */
 export const mEthAddress = {
   1: '0xd5F7838F5C461fefF7FE49ea5ebaF7728bB0ADfa',
+  31337: '0x0000000000000000000000000000000000000000',
   11155111: '0x072d71b257ECa6B60b5333626F6a55ea1B0c451c',
 } as const
 

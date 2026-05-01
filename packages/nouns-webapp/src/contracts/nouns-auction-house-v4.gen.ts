@@ -1371,7 +1371,9 @@ export const nounsAuctionHouseV4Abi = [
 ] as const
 
 export const nounsAuctionHouseV4Address = {
-  31337: '0x0000000000000000000000000000000000000000',
+  1: '0x0000000000000000000000000000000000000000',
+  31337: '0x5eb3Bc0a489C5A8288765d2336659EbCA68FCd00',
+  11155111: '0x0000000000000000000000000000000000000000',
 } as const
 
 export const nounsAuctionHouseV4Config = {

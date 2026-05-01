@@ -287,6 +287,7 @@ export const nounsTreasuryAbi = [
  */
 export const nounsTreasuryAddress = {
   1: '0xb1a32FC9F9D8b2cf86C068Cae13108809547ef71',
+  31337: '0x4ed7c70F96B99c776995fB64377f0d4aB3B0e1C1',
   11155111: '0x07e5D6a1550aD5E597A9b0698A474AA080A2fB28',
 } as const
 

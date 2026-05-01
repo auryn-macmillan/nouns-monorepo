@@ -650,6 +650,7 @@ export const mEthStakingAbi = [
  */
 export const mEthStakingAddress = {
   1: '0xe3cBd06D7dadB3F4e6557bAb7EdD924CD1489E8f',
+  31337: '0x0000000000000000000000000000000000000000',
   11155111: '0xCAfD88816f07d4FFF671D0aAc5E4c1E29875AB2D',
 } as const
 

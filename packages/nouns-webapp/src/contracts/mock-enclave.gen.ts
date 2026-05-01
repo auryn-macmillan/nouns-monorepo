@@ -513,7 +513,9 @@ export const mockEnclaveAbi = [
 ] as const
 
 export const mockEnclaveAddress = {
-  31337: '0xc5a5C42992dECbae36851359345FE25997F5C42d',
+  1: '0x0000000000000000000000000000000000000000',
+  31337: '0x851356ae760d987E095750cCeb3bC6014560891C',
+  11155111: '0x0000000000000000000000000000000000000000',
 } as const
 
 export const mockEnclaveConfig = {

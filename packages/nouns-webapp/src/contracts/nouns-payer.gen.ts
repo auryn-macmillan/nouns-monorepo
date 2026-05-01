@@ -163,6 +163,7 @@ export const nounsPayerAbi = [
  */
 export const nounsPayerAddress = {
   1: '0xd97Bcd9f47cEe35c0a9ec1dc40C1269afc9E8E1D',
+  31337: '0x0000000000000000000000000000000000000000',
   11155111: '0x5a2A0951C6b3479DBEe1D5909Aac7B325d300D94',
 } as const
 

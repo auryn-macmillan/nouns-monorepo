@@ -576,6 +576,7 @@ export const nounsDescriptorAbi = [
  */
 export const nounsDescriptorAddress = {
   1: '0x33A9c445fb4FB21f2c030A6b2d3e2F12D017BFAC',
+  31337: '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9',
   11155111: '0x79E04ebCDf1ac2661697B23844149b43acc002d5',
 } as const
 
